@@ -5,7 +5,7 @@
 import numpy as np
 
 
-def random_predict(number: int = 1) -> int:
+def random_predict(number:int=np.random.randint(1, 101)) -> int:
     """Рандомно угадываем число
 
     Args:
@@ -16,11 +16,20 @@ def random_predict(number: int = 1) -> int:
     """
     count = 0
 
+    # по алгоритму бинарного поиска за O(log2(n))
+    left = 1
+    right = 100
     while True:
         count += 1
-        predict_number = np.random.randint(1, 101)  # предполагаемое число
-        if number == predict_number:
-            break  # выход из цикла если угадали
+        h = (round((left + right)/2))
+        if h == number or left == number or right == number:
+            break # выход из цикла, если угадали
+        elif h < number:
+            left = h
+        else:
+            right = h
+            
+        
     return count
 
 
